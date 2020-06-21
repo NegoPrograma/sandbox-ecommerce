@@ -5,7 +5,7 @@ use \PDO;
 use \PDOException;
 class Model {
 
-    protected $db;
+    public $db;
     public function __construct(){
         global $config;
         

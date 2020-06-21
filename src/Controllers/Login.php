@@ -4,7 +4,6 @@ namespace Source\Controllers;
 Use Source\Core\Controller;
 Use Source\Models\User;
 
-
 class Login extends Controller {
 
     
@@ -16,33 +15,37 @@ class Login extends Controller {
             $user = new User();
             $email = $_POST["email"];
             $pass = $_POST["password"];
-            $responseId = $user->login($email, $pass);
+            $response = $user->login($email, $pass);
 
-            if ($responseId != null) {
-                $_SESSION["login_data"] = $responseId;
-                header("location: products");
+            if ($response != null) {
+                
+                $_SESSION["login_data"] = $response;
+                print_r($_SESSION);
+                //header("location: http://local:8080/sandbox-ecommerce/products");
             } else {
                 $this->data["message"] = "Os dados preenchidos estão incorretos ou você ainda não confirmou o e-mail de registro.";
             }
         }
 
-        $this->loadView("login", $this->data);
+        
     }
 
     public function signup()
     {
-        $user = new user();
-        if (isset($_POST["name"]) && !empty($_POST["name"])) {
-            $name = addslashes($_POST["name"]);
-            $email = addslashes($_POST["email"]);
-            $password = md5($_POST["password"]);
+        $user = new User();
+        
+        if (isset($_POST["name"]) && !empty($_POST["name"])){
+                $name = addslashes($_POST["name"]);
+                $email = addslashes($_POST["email"]);
+                $password = md5($_POST["password"]);
+                $password_confirm = md5($_POST["password_confirm"]);
+                $cpf = addslashes($_POST['cpf']);
 
-            $this->data['message'] = $user->signUp($name, $email, $password);
-            if ($this->data['message'] == "Usuário cadastrado com sucesso") {
-                header("location: ../home");
+                $this->data['message'] = $user->signUp($name, $email, $password,$password_confirm,$cpf);
+                if($this->data['message'] == ""){
+                    header("location: http://local:8080/sandbox-ecommerce/products");
+                }
             }
-        }
-
         $this->loadView("signup", $this->data);
     }
     
