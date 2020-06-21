@@ -15,6 +15,6 @@
         }
     },
     "require": {
-        "pagseguro/php": "@stable"
+        "mercadopago/dx-php": "^2.0"
     }
 }

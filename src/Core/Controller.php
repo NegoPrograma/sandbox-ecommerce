@@ -4,6 +4,7 @@ namespace Source\Core;
 
 class Controller{
 
+    protected $data;
     public function loadView($viewName,$viewData = array()){
         require_once 'src/Views/'.$viewName.'.php';
     }

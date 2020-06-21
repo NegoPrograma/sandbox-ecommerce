@@ -3,12 +3,9 @@
 namespace Source\Controllers;
 Use Source\Core\Controller;
 
-class Home extends Controller {
+class Products extends Controller {
 
-    /**
-     * 
-     */
-    private $data = array();
+    
 
     
     public function index(){

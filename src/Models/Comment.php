@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Models\User;
+namespace Source\Models;
 Use Source\Core\Model;
 
 class Comment extends Model {

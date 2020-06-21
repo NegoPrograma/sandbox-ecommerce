@@ -34,7 +34,7 @@ class Core {
           }            
 
         } else {
-          $currentController = "Source\\Controllers\\Home";
+          $currentController = "Source\\Controllers\\Products";
           $currentAction = "index";
         }
 
