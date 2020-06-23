@@ -16,15 +16,13 @@ class Login extends Controller {
             $email = $_POST["email"];
             $pass = $_POST["password"];
             $response = $user->login($email, $pass);
-
+            print_r($response);
             if ($response != null) {
-                
                 $_SESSION["login_data"] = $response;
-                print_r($_SESSION);
-                //header("location: http://local:8080/sandbox-ecommerce/products");
             } else {
                 $this->data["message"] = "Os dados preenchidos estão incorretos ou você ainda não confirmou o e-mail de registro.";
             }
+            header("location: products");
         }
 
         
@@ -49,5 +47,8 @@ class Login extends Controller {
         $this->loadView("signup", $this->data);
     }
     
-    
+    public function logout(){
+        unset($_SESSION['login_data']);
+        header("location: http://local:8080/sandbox-ecommerce/products");
+    }
 };

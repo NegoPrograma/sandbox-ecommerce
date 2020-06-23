@@ -42,5 +42,16 @@ class Core {
         call_user_func_array([$c,$currentAction],$params);
 
     }
+
+
+    public $session;
+    public function storeSession($key,$value){
+      $session[$key] = $value;
+    }
+
+    public function getSession(){
+      $_SESSION = $this->session;
+      return $_SESSION;
+    }
     
 }
