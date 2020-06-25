@@ -32,18 +32,18 @@ class Login extends Controller {
     {
         $user = new User();
         
-        if (isset($_POST["name"]) && !empty($_POST["name"])){
-                $name = addslashes($_POST["name"]);
-                $email = addslashes($_POST["email"]);
-                $password = md5($_POST["password"]);
-                $password_confirm = md5($_POST["password_confirm"]);
-                $cpf = addslashes($_POST['cpf']);
+        if(isset($_POST["name"]) && !empty($_POST["name"])){
+            $name = addslashes($_POST["name"]);
+            $email = addslashes($_POST["email"]);
+            $password = md5($_POST["password"]);
+            $password_confirm = md5($_POST["password_confirm"]);
+            $cpf = addslashes($_POST['cpf']);
 
-                $this->data['message'] = $user->signUp($name, $email, $password,$password_confirm,$cpf);
-                if($this->data['message'] == ""){
-                    header("location: http://local:8080/sandbox-ecommerce/products");
-                }
+            $this->data['message'] = $user->signUp($name, $email, $password,$password_confirm,$cpf);
+            if($this->data['message'] == ""){
+                header("location: http://local:8080/sandbox-ecommerce/products");
             }
+        }
         $this->loadView("signup", $this->data);
     }
     
