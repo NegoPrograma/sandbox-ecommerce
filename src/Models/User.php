@@ -43,6 +43,7 @@ class User extends Model {
             
             
             if($message == ""){
+                $cpf = $util->formatCPF($cpf);
                 $stmt = "INSERT INTO users (name, email, password,cpf) VALUES ('{$name}', '{$email}', '{$pass}','{$cpf}')";
                 $this->db->query($stmt);
                 //logando o usuário automaticamente após registro.

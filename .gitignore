@@ -106,6 +106,6 @@ dist
 # Enviroment files
 config.php
 env.php
-
+*.sql
 
 /vendor/

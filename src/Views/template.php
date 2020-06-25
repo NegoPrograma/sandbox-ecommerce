@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="topnav">
-  <a class="active" href="#home">SANDBOX E-COMMERCE</a>
+  <a class="active" href="http://local:8080/sandbox-ecommerce/products">SANDBOX E-COMMERCE</a>
   <?php if(!isset($_SESSION["login_data"])): ?>
   <div class="login-container">
     <form action="http://local:8080/sandbox-ecommerce/login" method="post">
