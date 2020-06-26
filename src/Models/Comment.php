@@ -9,4 +9,8 @@ class Comment extends Model {
         parent::__construct();
     }
 
+    public function getComments($product_id){
+        
+    }
+
 }

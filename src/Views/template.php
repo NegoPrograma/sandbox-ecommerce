@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandbox E-commerce</title>
-    <link rel="stylesheet" href="assets/css/template.css">
+    <link rel="stylesheet" href="http://local:8080/sandbox-ecommerce/assets/css/template.css">
     <script
 			  src="https://code.jquery.com/jquery-3.5.1.js"
 			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -14,6 +14,12 @@
 <body>
 <div class="topnav">
   <a class="active" href="http://local:8080/sandbox-ecommerce/products">SANDBOX E-COMMERCE</a>
+  <div class="product-search">
+    <form method="POST" action="http://local:8080/sandbox-ecommerce/products/search">
+    <input class="search-input" type="text" name="query_string">
+    <button class="search-button"type="submit">Pesquisar</button>
+    </form>
+  </div>
   <?php if(!isset($_SESSION["login_data"])): ?>
   <div class="login-container">
     <form action="http://local:8080/sandbox-ecommerce/login" method="post">
