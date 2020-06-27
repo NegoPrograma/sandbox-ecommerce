@@ -22,10 +22,8 @@ class Login extends Controller {
             } else {
                 $this->data["message"] = "Os dados preenchidos estão incorretos ou você ainda não confirmou o e-mail de registro.";
             }
-            header("location: products");
         }
-
-        
+        header("location: products");
     }
 
     public function signup()

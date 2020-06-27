@@ -109,3 +109,5 @@ env.php
 *.sql
 
 /vendor/
+
+/assets/js/jquery.js

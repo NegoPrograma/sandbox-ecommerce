@@ -28,12 +28,12 @@ class Product extends Model {
         return $result/$totalProductsPerPage;
     }
 
-    public function queryProductsByName($totalProductsPerPage = 0,$page = 0,$queryString){
+    public function queryProductsByName($queryString){
         $stmt = "SELECT * FROM products";
         $allProducts = $this->db->query($stmt)->fetchAll();
         $result = array();
         foreach($allProducts as $product){
-            if(strpos($product['name'],$queryString) || $product['name']== $queryString){
+            if(strpos($product['name'],$queryString) !== false || $product['name'] == $queryString){
                 $result[] = $product;
             }
         }

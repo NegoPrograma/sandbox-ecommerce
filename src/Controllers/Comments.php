@@ -4,7 +4,7 @@ namespace Source\Controllers;
 Use Source\Core\Controller;
 use Source\Models\Comment;
 
-class Ajax extends Controller {
+class Comments extends Controller {
 
    public function postComment(){
        if($_POST['comment'] && !empty($_POST['comment'])){

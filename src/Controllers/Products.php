@@ -39,6 +39,7 @@ class Products extends Controller {
     public function cart(){
         if(isset($_POST['id']) && isset($_POST['quantity'])){
             $_SESSION['cart'][] = ["id"=> $_POST['id'], "quantity"=>$_POST['quantity']];
+            echo "Produto adicionado ao carrinho com sucesso.";
         }
     }
 
@@ -47,7 +48,6 @@ class Products extends Controller {
             $queryString = addslashes($_POST['query_string']);
             $productModel = new Product();
             $this->data['result'] = $productModel->queryProductsByName($queryString);
-            $this->data['total_pages'] = count($this->data['result'])/$this->totalProductsPerPage;
             $this->loadTemplate("home",$this->data);
         }else{
             header("location: ../products");
