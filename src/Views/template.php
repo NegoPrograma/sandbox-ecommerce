@@ -36,6 +36,6 @@
   </div>
 </div> 
     <?php $this->loadView($viewName,$viewData); ?>
-
+    <?php $_SESSION['previous_URL'] = $_SERVER['PHP_SELF']; ?>
 </body>
 </html>

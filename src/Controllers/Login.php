@@ -23,7 +23,7 @@ class Login extends Controller {
                 $this->data["message"] = "Os dados preenchidos estão incorretos ou você ainda não confirmou o e-mail de registro.";
             }
         }
-        header("location: products");
+        header("location: ".$_SESSION['previous_URL']);
     }
 
     public function signup()
@@ -39,7 +39,7 @@ class Login extends Controller {
 
             $this->data['message'] = $user->signUp($name, $email, $password,$password_confirm,$cpf);
             if($this->data['message'] == ""){
-                header("location: http://local:8080/sandbox-ecommerce/products");
+                header("location: ".$_SESSION['previous_URL']);
             }
         }
         $this->loadView("signup", $this->data);

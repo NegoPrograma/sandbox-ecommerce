@@ -1,5 +1,5 @@
 $(".add-to-cart-button").on("click", function () {
-    let id = $(".add-to-cart-button").attr("data-id");
+    let id = $(".add-to-cart-button").attr("data-product-id");
     let quantity = parseInt($("#quantity").val());
     $.ajax({
         type: "POST",

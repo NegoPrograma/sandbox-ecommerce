@@ -23,7 +23,7 @@ class Products extends Controller {
         $this->data['products'] = $productModel->getProducts($page,$this->totalProductsPerPage);
         $this->data['total_pages'] = $productModel->countTotalPages($this->totalProductsPerPage);
         $this->data['total_products_per_page'] = $this->totalProductsPerPage;
-        $this->loadTemplate("home",$this->data);
+        $this->loadTemplate("products",$this->data);
     }
 
     public function buy($id){
@@ -32,7 +32,7 @@ class Products extends Controller {
         $this->data['product'] = $productModel->getProduct($id);
         $this->data['comments'] = $commentModel->getComments($id);
 
-        $this->loadTemplate("buy",$this->data);
+        $this->loadTemplate("single-product",$this->data);
 
     }
 
@@ -48,9 +48,9 @@ class Products extends Controller {
             $queryString = addslashes($_POST['query_string']);
             $productModel = new Product();
             $this->data['result'] = $productModel->queryProductsByName($queryString);
-            $this->loadTemplate("home",$this->data);
+            $this->loadTemplate("products",$this->data);
         }else{
-            header("location: ../products");
+            header("location: ".$_SESSION['previous_URL']);
         }
         
     }
