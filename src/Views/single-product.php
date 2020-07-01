@@ -11,25 +11,38 @@
 </div>
 
 <div class="comment-container">
-    <?php foreach($viewData['comments'] as $comment): ?>
-        <h3 style="display:inline-block" class="username" data-user-id=<?php echo $comment['user_id']?>>
-            <?php echo $comment['name']?>
-            <?php echo $comment['post_date']?>
+    <?php foreach ($viewData['comments'] as $comment) : ?>
+        <h3 style="display:inline-block" class="username" data-user-id=<?php echo $comment['user_id'] ?>>
+            <?php echo $comment['name'] ?>
+            <?php echo $comment['post_date'] ?>
         </h3>
-        <p class="comment" data-comment-id=<?php echo $comment['id']?>><?php echo $comment['content']?></p>
-        <?php if(isset($_SESSION['login_data']) && !empty($_SESSION['login_data']) && $comment['user_id'] == $_SESSION['login_data']['id']): ?>
-            
-            <form action="http://local:8080/sandbox-ecommerce/comments/respondComment" method="post">
-                <input type="text" name="comment" class="comment-input">
-                <button id="submit-comment-button" type="submit">Responder</button>
-            </form>
+        <p class="comment" data-comment-id=<?php echo $comment['id'] ?>><?php echo $comment['content'] ?></p>
+        <?php if (isset($comment['responses'])) : ?>
+            <?php foreach ($comment['responses'] as $response) : ?>
+
+                <h3 style="display:inline-block" class="username" data-user-id=<?php echo $response['user_id'] ?>>
+                    <?php echo $response['name'] ?>
+                    <?php echo $response['post_date'] ?>
+                </h3>
+                <p class="comment" ><p>RESPONSEEEEEEE!</p><?php echo $response['content'] ?></p>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['login_data'])) : ?>
+            <?php if (!empty($_SESSION['login_data']) && $comment['user_id'] == $_SESSION['login_data']['id'] || $_SESSION['login_data']['is_seller']) : ?>
+
+                <form action="http://local:8080/sandbox-ecommerce/comments/postComment" method="post">
+                    <input type="text" name="comment" class="comment-input">
+                    <input type="hidden" name="comment_id" value=<?php echo $comment['id'] ?>>
+                    <button id="submit-comment-button" type="submit">Responder</button>
+                </form>
             <?php endif ?>
-            <hr>
-        <?php endforeach ?>
+        <?php endif ?>
+        <hr>
+    <?php endforeach ?>
 </div>
 
-<?php if(isset($_SESSION['login_data']) && !empty($_SESSION['login_data'])): ?>
-    
+<?php if (isset($_SESSION['login_data']) && !empty($_SESSION['login_data'])) : ?>
+
     <form action="http://local:8080/sandbox-ecommerce/comments/postComment" method="post">
         <input type="text" name="comment" class="comment-input">
         <button id="submit-comment-button" type="submit">Enviar</button>
