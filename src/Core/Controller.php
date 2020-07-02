@@ -2,6 +2,8 @@
 
 namespace Source\Core;
 
+use Source\Models\Product;
+
 class Controller{
 
     protected $data;
@@ -10,6 +12,8 @@ class Controller{
     }
 
     public function loadTemplate($viewName,$viewData = array()){
+        $productModel = new Product();
+        $viewData['categories'] = $productModel->getCategories();
         require_once "src/Views/template.php";
     }
 

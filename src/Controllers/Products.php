@@ -43,16 +43,24 @@ class Products extends Controller {
         }
     }
 
-    public function search(){
+    public function search($category = ""){
+        $productModel = new Product();
+        if($category != ""){
+            $this->data['result'] = $productModel->queryProductsByCategory($category);
+            if($this->data['result'] != null){
+                $this->loadTemplate("products",$this->data);
+            }else {
+                echo "categoria inválida.";
+                header("location: ".$_SESSION['previous_URL']);
+            }
+        }
         if(!empty($_POST['query_string'])){
             $queryString = addslashes($_POST['query_string']);
-            $productModel = new Product();
             $this->data['result'] = $productModel->queryProductsByName($queryString);
             $this->loadTemplate("products",$this->data);
         }else{
             header("location: ".$_SESSION['previous_URL']);
         }
-        
     }
 
     

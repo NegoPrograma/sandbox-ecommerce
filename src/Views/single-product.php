@@ -11,6 +11,7 @@
 </div>
 
 <div class="comment-container">
+    <h2>COMENTÁRIOS</h2>
     <?php foreach ($viewData['comments'] as $comment) : ?>
         <h3 style="display:inline-block" class="username" data-user-id=<?php echo $comment['user_id'] ?>>
             <?php echo $comment['name'] ?>
@@ -24,7 +25,7 @@
                     <?php echo $response['name'] ?>
                     <?php echo $response['post_date'] ?>
                 </h3>
-                <p class="comment" ><p>RESPONSEEEEEEE!</p><?php echo $response['content'] ?></p>
+                <p class="response" ><p>RESPONSEEEEEEE!</p><?php echo $response['content'] ?></p>
             <?php endforeach; ?>
         <?php endif; ?>
         <?php if (isset($_SESSION['login_data'])) : ?>
