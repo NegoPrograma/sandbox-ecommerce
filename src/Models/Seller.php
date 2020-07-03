@@ -15,7 +15,7 @@ class Seller extends User {
         $email = addslashes($email);
         $pass = md5($pass);
         if (!empty($email) && !empty($pass)) {
-            $stmt = "SELECT * FROM users WHERE email = '{$email}' AND password = '{$pass}' AND is_seller != 0";
+            $stmt = "SELECT * FROM users WHERE email = '{$email}' AND password = '{$pass}' AND is_seller = 1";
             $sql = $this->db->query($stmt);
             $result = $sql->fetch();
            

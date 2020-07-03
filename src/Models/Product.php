@@ -14,8 +14,8 @@ class Product extends Model {
         $stmt = "INSERT INTO products(name,category,price,in_storage,image_path)
                 VALUES ('{$name}','{$category}',{$price},{$quantity_avaiable},'{$image_path}')";
         $this->db->query($stmt);
-
     }
+    
     public function getCategories(){
         return $this->categories;
     }
@@ -45,10 +45,9 @@ class Product extends Model {
         return false;
     }
 
-    public function setCategories(){
+    public function setCategory(){
         $stmt = "SELECT * FROM products";
         $result = $this->db->query($stmt)->fetchAll();
-
         foreach($result as $product){
             $id = $product['id'];
             $randomNumber = rand(0,count($this->categories)-1);

@@ -21,14 +21,22 @@ class Admin extends Controller {
             $email = $_POST["email"];
             $pass = $_POST["password"];
             $response = $sellerModel->login($email, $pass);
-            print_r($response);
             if ($response != null) {
                 $_SESSION["login_data"] = $response;
             } else {
                 $this->data["message"] = "Os dados preenchidos estão incorretos ou você ainda não confirmou o e-mail de registro.";
             }
         }
-        header("location: products");
+        $this->loadView("seller",$this->data);
+    }
+
+    public function admin(){
+
+        $this->loadView("seller",$this->data);
+    }
+
+    public function addproduct(){
+        
     }
 
 }
