@@ -52,14 +52,16 @@ class Products extends Controller {
             }else {
                 echo "categoria inválida.";
                 header("location: ".$_SESSION['previous_URL']);
+                exit();
             }
-        }
-        if(!empty($_POST['query_string'])){
-            $queryString = addslashes($_POST['query_string']);
-            $this->data['result'] = $productModel->queryProductsByName($queryString);
-            $this->loadTemplate("products",$this->data);
         }else{
-            header("location: ".$_SESSION['previous_URL']);
+            if(!empty($_POST['query_string'])){
+                $queryString = addslashes($_POST['query_string']);
+                $this->data['result'] = $productModel->queryProductsByName($queryString);
+                $this->loadTemplate("products",$this->data);
+            }else{
+                header("location: ".$_SESSION['previous_URL']);
+            }
         }
     }
 

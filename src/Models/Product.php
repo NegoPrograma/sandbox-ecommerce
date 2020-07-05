@@ -2,18 +2,25 @@
 
 namespace Source\Models;
 Use Source\Core\Model;
+use Source\Utils\InputValidator;
 
 class Product extends Model {
 
-    private $categories = ["eletrodomestico","movel","eletronicos","utensílios","smartphone","notebooks"];
+    private $categories = ["eletrodomestico","movel","eletronicos","utensilios","smartphone","notebooks"];
     public function __construct(){
         parent::__construct();
     }
 
-    public function addNewProduct($name,$category,$price,$quantity_avaiable,$image_path){
-        $stmt = "INSERT INTO products(name,category,price,in_storage,image_path)
-                VALUES ('{$name}','{$category}',{$price},{$quantity_avaiable},'{$image_path}')";
-        $this->db->query($stmt);
+    public function addNewProduct($name,$category,$price,$quantity_avaiable,$image){
+        $inputValidator = new InputValidator();
+        $image_path = "";
+        if($inputValidator->validImage($image,$image_path)){
+            $stmt = "INSERT INTO products(name,category,price,in_storage,image_path)
+                    VALUES ('{$name}','{$category}',{$price},{$quantity_avaiable},'{$image_path}')";
+            $this->db->query($stmt);
+        }else{
+            echo "imagem inválida.";
+        }
     }
     
     public function getCategories(){

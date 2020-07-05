@@ -93,4 +93,17 @@ class InputValidator
         return false;
     }
 
+    public function validImage($image,&$image_path){
+        if(isset($image) && !empty($image['tmp_name'])){
+            $allowedValues = ['image/jpg','image/jpeg','image/png'];
+            $photo = $image['tmp_name'];
+            $fileExtension = $image['type'];
+            if(in_array($fileExtension,$allowedValues)){
+                $image_path = "assets/images/uploads/".md5(time()).'.png';
+                move_uploaded_file($photo,$image_path);
+                return true;
+            }
+        }
+        return false;
+    }
 }

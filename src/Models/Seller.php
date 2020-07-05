@@ -18,7 +18,6 @@ class Seller extends User {
             $stmt = "SELECT * FROM users WHERE email = '{$email}' AND password = '{$pass}' AND is_seller = 1";
             $sql = $this->db->query($stmt);
             $result = $sql->fetch();
-           
         }
         return $result;
     }

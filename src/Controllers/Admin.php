@@ -2,13 +2,14 @@
 
 namespace Source\Controllers;
 Use Source\Core\Controller;
+use Source\Models\Product;
 Use Source\Models\Seller;
 
 class Admin extends Controller {
 
     public function __construct()
     {
-        
+        parent::__construct();
     }
 
     
@@ -36,7 +37,11 @@ class Admin extends Controller {
     }
 
     public function addproduct(){
-        
+        if(isset($_POST['name']) && $this->requestValidator->hasAllPostRequestData(4)){
+            $productModel = new Product();
+            $this->data['result'] = $productModel->addNewProduct($_POST['name'],$_POST['category'],$_POST['price'],$_POST['in_storage'],$_FILES['product_image']);
+        }
+        $this->loadView("addproduct", $this->data);
     }
 
 }

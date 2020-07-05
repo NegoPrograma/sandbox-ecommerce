@@ -14,8 +14,9 @@ class RequestValidator
      */
     public function hasAllPostRequestData($numberOfParams){
         if(count($_POST) == $numberOfParams){
+            $numericIndexedPostArray = array_values($_POST);
             for($index = 0; $index < $numberOfParams; $index++){
-                if(empty($_POST[$index]))
+                if(empty($numericIndexedPostArray[$index]))
                     return false;
             }
             return true;
